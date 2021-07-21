@@ -8,7 +8,7 @@ class Simulation:
         pass
 
     def run_simulation(self):
-        """The central method called in main.py."""
+        # """The central method called in main.py."""
         customer = Customer()
         soda_machine = SodaMachine()
         will_proceed = False

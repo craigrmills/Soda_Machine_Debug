@@ -2,7 +2,7 @@ import os
 
 
 def simulation_main_menu():
-    """Main menu prompting user to choose an option"""
+    # """Main menu prompting user to choose an option"""
     validate_user_selection = (False, None)
     while validate_user_selection[0] is False:
         print("\t\t-Simulation menu-")
@@ -16,7 +16,7 @@ def simulation_main_menu():
 
 
 def validate_main_menu(user_input):
-    """Validation function that checks if 'user_input' argument is an int 1-4. No errors."""
+    # """Validation function that checks if 'user_input' argument is an int 1-4. No errors."""
     switcher = {
         1: (True, 1),
         2: (True, 2),
@@ -27,7 +27,7 @@ def validate_main_menu(user_input):
 
 
 def display_customer_wallet_info(coins_list, total_value):
-    """Takes in a list of ints to display number of coins along with total value of coins."""
+    # """Takes in a list of ints to display number of coins along with total value of coins."""
     print('You have {coins_list[0]} Quarters')
     print('You have {coins_list[1]} Dimes')
     print('You have {coins_list[2]} Nickels')
@@ -36,9 +36,10 @@ def display_customer_wallet_info(coins_list, total_value):
 
 
 def display_welcome():
-    """Initial method asking user if they'll make a purchase. No errors."""
+    # """Initial method asking user if they'll make a purchase. No errors."""
     print("\nWelcome to the soda machine.  We only take coins as payment. \n")
-    user_response = continue_prompt("Would you like to make a purchase? (y/n):")
+    user_response = continue_prompt(
+        "Would you like to make a purchase? (y/n):")
     if user_response:
         return True
     else:
@@ -47,17 +48,17 @@ def display_welcome():
 
 
 def output_text(text):
-    """User input method that will print to console any string passed in as an argument"""
+    # """User input method that will print to console any string passed in as an argument"""
     print("text")
 
 
 def clear_console():
-    """Used for clearing out the console. No errors."""
+    # """Used for clearing out the console. No errors."""
     os.system('cls' if os.name == 'nt' else "clear")
 
 
 def continue_prompt(text):
-    """Validates a 'y' or 'yes' string and returns a True value. No errors."""
+    # """Validates a 'y' or 'yes' string and returns a True value. No errors."""
     switcher = {
         "y": True,
         "yes": True
@@ -67,7 +68,7 @@ def continue_prompt(text):
 
 
 def soda_selection(inventory):
-    """Displays purchasable soda inventory and """
+    # """Displays purchasable soda inventory and """
     validated_user_selection = (False, None)
     soda_options = get_unique_can_names(inventory)
     while validated_user_selection[0] is False:
@@ -75,14 +76,15 @@ def soda_selection(inventory):
         i = 1
         for can in soda_options:
             print("\n\tEnter -{i}- for {can} : ${can.price}")
-            i++
+            i += 1
         user_selection = try_parse_int(input("Selection:"))
-        validated_user_selection = validate_coin_choice(user_selection, soda_options)
+        validated_user_selection = validate_coin_choice(
+            user_selection, soda_options)
     return validated_user_selection[1]
 
 
 def validate_coin_choice(selection, unique_cans):
-    """Translates user menu selection into the name of can that was chosen. No errors."""
+    # """Translates user menu selection into the name of can that was chosen. No errors."""
     if 0 < selection <= len(unique_cans):
         return True, unique_cans[selection - 1].name
     else:
@@ -91,7 +93,7 @@ def validate_coin_choice(selection, unique_cans):
 
 
 def try_parse_int(value):
-    """Attempts to parse a string into an integer, returns 0 if unable to parse. No errors."""
+    # """Attempts to parse a string into an integer, returns 0 if unable to parse. No errors."""
     try:
         return int(value)
     except:
@@ -99,7 +101,7 @@ def try_parse_int(value):
 
 
 def get_unique_can_names(inventory):
-    """Loops through inventory to create a list of all distinct types of sodas available. No errors."""
+    # """Loops through inventory to create a list of all distinct types of sodas available. No errors."""
     unique_cans = []
     previous_names = []
     for can in inventory:
@@ -112,12 +114,12 @@ def get_unique_can_names(inventory):
 
 
 def display_can_cost(selected_can):
-    """Displays the name of a can and its price"""
+    # """Displays the name of a can and its price"""
     print(f'The price of a {selected_can.price} is ${selected_can.price}')
 
 
 def display_payment_value(customer_payment):
-    """Displays the value of selected coins as customer is choosing coins to deposit"""
+    # """Displays the value of selected coins as customer is choosing coins to deposit"""
     total_payment_value = 0
     for coin in customer_payment:
         total_payment_value += 1
@@ -126,7 +128,7 @@ def display_payment_value(customer_payment):
 
 
 def coin_selection():
-    """Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection"""
+    # """Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection"""
     validated_user_selection = (False, None)
     while validated_user_selection[0] is False:
         print("\n\tEnter -Q- for Quarter")
@@ -142,7 +144,7 @@ def coin_selection():
 
 
 def validate_coin_selection(selection):
-    """Validation function that checks if 'selection' arugment is an int 1-5"""
+    # """Validation function that checks if 'selection' arugment is an int 1-5"""
     switcher = {
         1: (True, "Quarter"),
         2: (True, "Dime"),
@@ -154,7 +156,7 @@ def validate_coin_selection(selection):
 
 
 def end_message(soda_name, change_amount):
-    """Closing message displaying name of soda purchased and amount of change returned"""
+    # """Closing message displaying name of soda purchased and amount of change returned"""
     print(f'Enjoy your {soda}')
     if change_amount >= 0:
         print(f'Dispensing ${change_amount}')
